@@ -17,32 +17,51 @@ class App extends Component {
       7: '#be49e1',
       8: '#afafaf',
       9: '#ffffff',
-  
+
     }
-    
-    this.props.color1 = color_map[index1];
-    this.props.color2 = color_map[index2];
-    this.props.color3 = color_map[index3];
-    
-    const convert = function(n) {
+
+
+    const convert = function (n) {
+      //Gives number of digits
+      // convert(9999)->3
+      // convert(10000)->4
       var order = Math.floor(Math.log(n) / Math.LN10
         + 0.000000001); // because float math sucks like that
-      return Math.pow(10, order);
+      // return Math.pow(10, order);
+      return order;
     }
-    var int = 10000;
-    var oom = convert(int);
 
-    var index3=oom-2; //2 digits can remain
-    var lead = Math.floor(int/Math.pow(10, index3));
-    var index1 = Math.floor(lead/10);
-    var index2 = lead % 10;
+    //The only case it gets wrong are single-digits
+    var resistance_val = 5
+    var oom = convert(resistance_val);
+    var num_digits = oom + 1;
 
+    var index1, index2, index3;
+
+    index3 = num_digits - 2; //2 digits can remain
+    var lead = Math.floor(resistance_val / Math.pow(10, index3));
+    if (resistance_val < 10) {
+
+      index1 = 0;
+      index2 = resistance_val;
+
+    } else {
+
+      index1 = Math.floor(lead / 10);
+      index2 = lead % 10;
+    }
+
+    var color1 = color_map[index1];
+    var color2 = color_map[index2];
+    var color3 = color_map[index3];
+
+    var color4 = 'gold';
 
 
     var svg_style = {
       'width': '110%',
       'height': 'auto',
-      'margin-left': '-10%'
+      'marginLeft': '-10%'
     };
 
     return <svg
@@ -61,24 +80,24 @@ class App extends Component {
             id="background_pane_1"
             d="M -133.50466,-0.26058045 H 60.76207 l 0,340.04816045 H -44.771175 Z"
             transform="matrix(1,0,-0.25881905,0.96592583,0,0)"
-            fill={this.props.color1} />
+            fill={color1} />
           <path
             id="background_pane_2"
             d="M 60.762066,-0.26057881 H 211.19659 V 339.78758 H 60.762066 Z"
 
-            fill={this.props.color2}
+            fill={color2}
             transform="matrix(1,0,-0.25881905,0.96592583,0,0)" />
           <path
             id="background_pane_3"
             d="M 211.19659,-0.26057881 H 361.63112 V 339.78758 H 211.19659 Z"
 
-            fill={this.props.color3}
+            fill={color3}
             transform="matrix(1,0,-0.25881905,0.96592583,0,0)" />
           <path
             id="background_pane_4"
             d="m 361.6311,-0.26057881 v 0 L 448.45548,339.78758 H 361.6311 Z"
 
-            fill={this.props.color4}
+            fill={color4}
             transform="matrix(1,0,-0.25881905,0.96592583,0,0)" />
         </g>
         <path
@@ -102,7 +121,7 @@ class App extends Component {
             width="11.966142"
             id="rect4530"
 
-            fill={this.props.color1}
+            fill={color1}
           />
           <rect
             ry="0"
@@ -113,7 +132,7 @@ class App extends Component {
             width="11.966142"
             id="rect4530-7"
 
-            fill={this.props.color2}
+            fill={color2}
           />
           <rect
             ry="0"
@@ -124,7 +143,7 @@ class App extends Component {
             width="11.966142"
             id="rect4530-7-7"
 
-            fill={this.props.color3}
+            fill={color3}
           />
           <rect
             ry="0"
@@ -135,7 +154,7 @@ class App extends Component {
             width="11.966142"
             id="rect4530-7-7-8"
 
-            fill={this.props.color4}
+            fill={color4}
           />
 
         </g>
@@ -145,7 +164,7 @@ class App extends Component {
             id="rect4485-4-0"
             d="m 66.154378,38.186262 v -3.87449 c 0,-5.34835 3.58114,-9.65431 8.029305,-9.65431 h 18.30471 c 3.410691,0 7.477328,3.15527 7.477328,3.15527 h 46.156409 c 0,0 4.06618,-3.15527 7.47685,-3.15527 h 20.28448 c 4.44816,0 8.02931,4.30596 8.02931,9.65431 v 3.87449 c 0,-5.34835 -3.58115,-9.65431 -8.02931,-9.65431 h -20.28448 c -3.41067,0 -7.47685,3.15527 -7.47685,3.15527 H 99.965721 c 0,0 -4.066637,-3.15527 -7.477328,-3.15527 h -18.30471 c -4.448165,0 -8.029305,4.30596 -8.029305,9.65431 z"
             fill="white"
-            fill-opacity="0.3"
+            fillOpacity="0.3"
 
           />
 
@@ -153,7 +172,7 @@ class App extends Component {
             id="rect4485-4"
             d="m 62.152342,52.422862 v 4.14239 c 0,5.71816 3.828757,10.32185 8.584489,10.32185 h 19.570382 c 3.646522,0 7.994345,-3.37344 7.994345,-3.37344 h 49.347882 c 0,0 4.34733,3.37344 7.99383,3.37344 h 21.68704 c 4.75573,0 8.58449,-4.60369 8.58449,-10.32185 v -4.14239 c 0,5.71816 -3.82876,10.32185 -8.58449,10.32185 h -21.68704 c -3.6465,0 -7.99383,-3.37344 -7.99383,-3.37344 H 98.301558 c 0,0 -4.347823,3.37344 -7.994345,3.37344 H 70.736831 c -4.755732,0 -8.584489,-4.60369 -8.584489,-10.32185 z"
             fill="black"
-            fill-opacity="0.4"
+            fillOpacity="0.4"
           />
         </g>
       </g>
