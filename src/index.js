@@ -13,6 +13,6 @@ import {
 
 // Search for the keywords to learn more about each error.
 ReactDOM.render(<Router>
-    <Route path="/:resistance" component={App}/>
+    <Route path="/:resistance?" component={App}/>
 </Router>, document.getElementById('root'));
 registerServiceWorker();
