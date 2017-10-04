@@ -3,14 +3,56 @@ import React, { Component } from 'react';
 import './App.css';
 
 class App extends Component {
+
   render() {
+
+    const color_map = {
+      0: '#000000',
+      1: '#5f3f27',
+      2: '#dd1010',
+      3: '#c88e13',
+      4: '#f0f223',
+      5: '#4aac36',
+      6: '#1eb6bd',
+      7: '#be49e1',
+      8: '#afafaf',
+      9: '#ffffff',
+  
+    }
+    
+    this.props.color1 = color_map[index1];
+    this.props.color2 = color_map[index2];
+    this.props.color3 = color_map[index3];
+    
+    const convert = function(n) {
+      var order = Math.floor(Math.log(n) / Math.LN10
+        + 0.000000001); // because float math sucks like that
+      return Math.pow(10, order);
+    }
+    var int = 10000;
+    var oom = convert(int);
+
+    var index3=oom-2; //2 digits can remain
+    var lead = Math.floor(int/Math.pow(10, index3));
+    var index1 = Math.floor(lead/10);
+    var index2 = lead % 10;
+
+
+
+    var svg_style = {
+      'width': '110%',
+      'height': 'auto',
+      'margin-left': '-10%'
+    };
+
     return <svg
       xmlns="http://www.w3.org/2000/svg"
       id="svg8"
       version="1.1"
       viewBox="0 0 492.69214 328.4613"
       height="328.4613mm"
-      width="492.69214mm">
+      width="492.69214mm"
+      style={svg_style}>
       <g
         transform="translate(133.61049,0.25170138)"
         id="layer1">
@@ -115,7 +157,7 @@ class App extends Component {
           />
         </g>
       </g>
-    </svg>
+    </svg >
       ;
   }
 }
