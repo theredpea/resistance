@@ -1,26 +1,20 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 // import logo from './logo.svg';
 import './App.css';
 import { withRouter } from 'react-router';
 
-import {
-  BrowserRouter as Router,
-  Route,
-  Link
-} from 'react-router-dom'
-
-// You should not use <Route> or withRouter() outside a <Router>
-//20 stack frames were collapsed.
-// ./src/index.js
-// C:/git/res-code/src/index.js:7
-//    4 | import App from './App';
-//    5 | import registerServiceWorker from './registerServiceWorker';
-//    6 | 
-// >  7 | ReactDOM.render(<App color1="red" color2="blue" color3="yellow" color4="orange" />, document.getElementById('root'));
-//    8 | registerServiceWorker();
 class App extends Component {
 
+  static propTypes = {
+    match: PropTypes.object.isRequired,
+    location: PropTypes.object.isRequired,
+    history: PropTypes.object.isRequired
+  }
+
   render() {
+
+    
 
     const color_map = {
       0: '#000000',
@@ -48,7 +42,7 @@ class App extends Component {
     }
 
     //The only case it gets wrong are single-digits
-    var resistance_val = 4000
+    var resistance_val = this.props.match.params.resistance;
     var oom = convert(resistance_val);
     var num_digits = oom + 1;
 
