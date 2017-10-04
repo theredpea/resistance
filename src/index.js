@@ -3,6 +3,15 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
+import {
+  BrowserRouter as Router,
+  Route,
+  Link
+} from 'react-router-dom'
+// Failed to compile
+// ./src/index.js
+//   Line 7:  'Router' is not defined  react/jsx-no-undef
 
-ReactDOM.render(<App color1="red" color2="blue" color3="yellow" color4="orange" />, document.getElementById('root'));
+// Search for the keywords to learn more about each error.
+ReactDOM.render(<Router><App  /></Router>, document.getElementById('root'));
 registerServiceWorker();

@@ -1,7 +1,23 @@
 import React, { Component } from 'react';
 // import logo from './logo.svg';
 import './App.css';
+import { withRouter } from 'react-router';
 
+import {
+  BrowserRouter as Router,
+  Route,
+  Link
+} from 'react-router-dom'
+
+// You should not use <Route> or withRouter() outside a <Router>
+//20 stack frames were collapsed.
+// ./src/index.js
+// C:/git/res-code/src/index.js:7
+//    4 | import App from './App';
+//    5 | import registerServiceWorker from './registerServiceWorker';
+//    6 | 
+// >  7 | ReactDOM.render(<App color1="red" color2="blue" color3="yellow" color4="orange" />, document.getElementById('root'));
+//    8 | registerServiceWorker();
 class App extends Component {
 
   render() {
@@ -32,7 +48,7 @@ class App extends Component {
     }
 
     //The only case it gets wrong are single-digits
-    var resistance_val = 5
+    var resistance_val = 4000
     var oom = convert(resistance_val);
     var num_digits = oom + 1;
 
@@ -63,7 +79,7 @@ class App extends Component {
       'height': 'auto',
       'marginLeft': '-10%'
     };
-
+//<Router> 
     return <svg
       xmlns="http://www.w3.org/2000/svg"
       id="svg8"
@@ -177,8 +193,9 @@ class App extends Component {
         </g>
       </g>
     </svg >
+    //</Router>
       ;
   }
 }
-
-export default App;
+ 
+export default withRouter(App);
