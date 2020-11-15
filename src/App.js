@@ -100,7 +100,7 @@ class App extends Component {
     //<Router> 
     return <div>
 
-      <input type="text" value={this.state.value} onChange={this.handleChange} style={input_style} />
+      <input type="text" value={this.state.value} onChange={this.handleChange} style={input_style} placeholder="Type a number" />
 
       <svg
         xmlns="http://www.w3.org/2000/svg"
